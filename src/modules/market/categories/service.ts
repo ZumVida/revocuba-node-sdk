@@ -1,9 +1,9 @@
 import { AxiosInstance } from 'axios';
+import { IApiWrapper, IPaginatedData } from '@/types/pagination.ts';
 import {
-  IApiWrapper,
-  IPaginatedData,
-} from '@adricq/revocuba-sdk/types/pagination.ts';
-import { IMarketCategory, IMarketCategoryTree } from '@adricq/revocuba-sdk';
+  IMarketCategory,
+  IMarketCategoryTree,
+} from '@/modules/market/categories/types';
 
 export default function (api: AxiosInstance) {
   const baseUrl = '';

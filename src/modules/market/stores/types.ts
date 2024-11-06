@@ -1,4 +1,4 @@
-import { IGeoAddress, IGeoLocation } from '../../geo/types.ts';
+import { IGeoAddress, IGeoLocation } from '@/modules/geo/types';
 
 export interface IMarketStore {
   id: string;

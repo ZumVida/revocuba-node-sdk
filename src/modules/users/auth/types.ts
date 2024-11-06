@@ -1,4 +1,4 @@
-import { IUser } from '../types.ts';
+import { IUser } from '../types';
 
 export interface IAuthLoginRequest {
   email: string;

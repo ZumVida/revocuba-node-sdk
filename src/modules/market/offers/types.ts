@@ -1,4 +1,4 @@
-import { IPaginationParams } from '@adricq/revocuba-sdk/types/pagination.ts';
+import { IPaginationParams } from '@/types/pagination';
 
 export interface IMarketOffer {
   id: string;

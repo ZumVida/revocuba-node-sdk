@@ -4,7 +4,7 @@ import type {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios';
-import { TokenHandler } from '@adricq/revocuba-sdk/types/tokenHandler.ts';
+import { TokenHandler } from '@/types/tokenHandler';
 
 /**
  * useErrorHandler
