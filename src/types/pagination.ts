@@ -28,6 +28,9 @@ export interface IPaginatedData<T> {
  * @interface IPaginationParams
  */
 export interface IPaginationParams {
-  page?: number;
-  paginate?: number;
+  pagination?: {
+    limit: number;
+    sort_by: string;
+    sort_direction: 'asc' | 'desc';
+  };
 }

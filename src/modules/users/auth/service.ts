@@ -1,14 +1,14 @@
 import { AxiosInstance } from 'axios';
+import { IApiWrapper } from '@/types/pagination';
 import {
   IAuthLoginRequest,
   IAuthRegisterRequest,
   IAuthResponse,
-} from './types.ts';
+} from './types';
 import { IUser } from '../types';
-import { IApiWrapper } from '../../../types/pagination';
 
 export default function (api: AxiosInstance) {
-  const baseUrl = '';
+  const baseUrl = '/auth';
 
   return {
     current: () => api.post<IApiWrapper<IUser>>(baseUrl),

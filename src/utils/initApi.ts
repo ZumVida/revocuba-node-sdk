@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TokenHandler } from '../types/tokenHandler';
+import { TokenHandler } from '@/types/tokenHandler';
 import {
   ErrorHandlerParams,
   useErrorHandler,

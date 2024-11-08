@@ -7,7 +7,7 @@ export interface IMarketOffer {
   image: string;
   price_sell: number;
   price_discount: number | null;
-  stock_quantity: number;
+  stock: number;
   stock_type: MarketOfferStockType;
   rating: number;
 }
@@ -18,10 +18,10 @@ export interface IMarketOfferMetadata {
 }
 
 export enum MarketOfferStockType {
-  OUT = 0,
-  LIMITED = 1,
-  UNLIMITED = 2,
-  INCOMING = 3,
+  LIMITED = 'limited',
+  OUT_STOCK = 'out_stock',
+  INFINITY = 'infinity',
+  INCOMING = 'incoming',
 }
 
 export interface IMarketOfferAttribute {
@@ -44,4 +44,5 @@ export interface IMarketOfferFilterRequest extends IPaginationParams {
   store_id?: string;
   category_id?: string;
   name?: string;
+  location_id: string;
 }

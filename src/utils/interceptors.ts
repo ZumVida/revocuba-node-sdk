@@ -15,7 +15,10 @@ export function useErrorHandler(params: ErrorHandlerParams): InterceptorUse {
   const { defaultError, logout, handleError } = params;
 
   return {
-    onFulfilled: (response) => response,
+    onFulfilled: (response) => {
+      console.log({ response });
+      return response;
+    },
     onRejected: (error) => {
       console.log({ requestError: error });
 

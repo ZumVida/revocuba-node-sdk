@@ -5,23 +5,26 @@ export interface IGeoAddress {
 }
 
 export interface IGeoCoordinates {
-  latitude: number;
-  longitude: number;
+  latitude: number | null;
+  longitude: number | null;
 }
 
-export interface IGeoLocation {
+export interface IGeoLocation extends IGeoCoordinates {
   id: string;
-  code: string;
   name: string;
   type: GeoLocationType;
-  coordinates: IGeoCoordinates | null;
   children?: IGeoLocation[];
-  zip_code: string;
 }
 
 export enum GeoLocationType {
-  COUNTRY = 1,
-  STATE = 2,
-  CITY = 3,
-  TOWN = 4,
+  COUNTRY = 'country',
+  STATE = 'state',
+  CITY = 'city',
+  TOWN = 'town',
 }
+
+/**
+ * ------------------------------------------
+ * Requests
+ * ------------------------------------------
+ */

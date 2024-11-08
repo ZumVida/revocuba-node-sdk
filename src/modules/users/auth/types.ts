@@ -8,7 +8,6 @@ export interface IAuthLoginRequest {
 export interface IAuthRegisterRequest {
   name: string;
   email: string;
-  phone: string | null;
   password: string;
   password_confirmation: string;
 }
