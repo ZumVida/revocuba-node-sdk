@@ -22,37 +22,38 @@ export function useErrorHandler(params: ErrorHandlerParams): InterceptorUse {
     onRejected: (error) => {
       console.log({ requestError: error });
 
-      // Unauthenticated
-      if (error?.response?.status === 401) {
-        logout();
-        if (defaultError && defaultError.unauthorized)
-          handleError(defaultError.unauthorized);
-      }
-      if (error.response.data.errors) {
-        const errorList = Object.keys(error.response.data.errors).map((key) => [
-          key,
-          error.response.data.errors[key][0],
-        ]);
-        errorList.forEach((i) => {
-          handleError(i[1]);
-        });
-      } else if (error.response.data.data) {
-        if (typeof error.response.data.data === 'object') {
-          const errorList = Object.keys(error.response.data.data).map((key) => [
-            key,
-            error.response.data.data[key][0],
-          ]);
+      if (error.response) {
+        // Unauthenticated
+        if (error?.response?.status === 401) {
+          logout();
+          if (defaultError && defaultError.unauthorized)
+            handleError(defaultError.unauthorized);
+        }
+        if (error.response.data.errors) {
+          const errorList = Object.keys(error.response.data.errors).map(
+            (key) => [key, error.response.data.errors[key][0]],
+          );
           errorList.forEach((i) => {
-            // handleError(`${i[0]}: ${i[1]}`)
             handleError(i[1]);
           });
-        } else {
-          handleError(error.response.data.data);
+        } else if (error.response.data.data) {
+          if (typeof error.response.data.data === 'object') {
+            const errorList = Object.keys(error.response.data.data).map(
+              (key) => [key, error.response.data.data[key][0]],
+            );
+            errorList.forEach((i) => {
+              // handleError(`${i[0]}: ${i[1]}`)
+              handleError(i[1]);
+            });
+          } else {
+            handleError(error.response.data.data);
+          }
+        } else if (error.response.data.message) {
+          handleError(error.response.data.message);
         }
-      } else if (error.response.data.message) {
-        handleError(error.response.data.message);
+        return Promise.reject(error.response);
       }
-      return Promise.reject(error.response);
+      return Promise.reject('Error');
     },
   };
 }

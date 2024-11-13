@@ -8,13 +8,11 @@ import {
 import { IUser } from '../types';
 
 export default function (api: AxiosInstance) {
-  const baseUrl = '/auth';
-
   return {
-    current: () => api.post<IApiWrapper<IUser>>(baseUrl),
+    current: () => api.post<IApiWrapper<IUser>>('/auth'),
     login: (params: IAuthLoginRequest) =>
-      api.post<IAuthResponse>(`${baseUrl}/login`, params),
+      api.post<IAuthResponse>('/auth/login', params),
     register: (params: IAuthRegisterRequest) =>
-      api.post<IAuthResponse>(`${baseUrl}/register`, params),
+      api.post<IAuthResponse>('/auth/register', params),
   };
 }
