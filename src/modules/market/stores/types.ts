@@ -12,7 +12,7 @@ export interface IMarketStore {
 }
 
 export interface IMarketStoreExtended extends IMarketStore, IGeoAddress {
-  offers: IMarketOffer[];
+  // offers: IMarketOffer[];
   payment_methods: IMarketPaymentMethod[];
 }
 export interface IMarketPaymentMethod {

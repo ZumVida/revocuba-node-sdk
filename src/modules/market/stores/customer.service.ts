@@ -7,7 +7,7 @@ import {
 import { IApiWrapper, IPaginatedData } from '@/types/pagination';
 
 export default function (api: AxiosInstance) {
-  const baseUrl = '/stores';
+  const baseUrl = '/market/stores';
 
   return {
     filter: (params: IMarketStoreFilterRequest) =>
