@@ -1,7 +1,6 @@
-export interface IGeoAddress {
+export interface IGeoAddress extends IGeoCoordinates {
   location: IGeoLocation;
   address: string;
-  number: string;
 }
 
 export interface IGeoCoordinates {

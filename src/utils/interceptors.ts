@@ -20,14 +20,15 @@ export function useErrorHandler(params: ErrorHandlerParams): InterceptorUse {
       return response;
     },
     onRejected: (error) => {
-      console.log({ requestError: error });
+      // console.log({ requestError: error });
 
       if (error.response) {
         // Unauthenticated
         if (error?.response?.status === 401) {
           logout();
-          if (defaultError && defaultError.unauthorized)
-            handleError(defaultError.unauthorized);
+          // if (defaultError && defaultError.unauthorized)
+          //   handleError(defaultError.unauthorized);
+          return;
         }
         if (error.response.data.errors) {
           const errorList = Object.keys(error.response.data.errors).map(

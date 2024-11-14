@@ -20,7 +20,7 @@ unpublish:
 	@pnpm unpublish --force
 
 .PHONY: publish
-publish:
+publish: build
 	@pnpm publish --no-git-checks
 
 .PHONY: fresh-publish

@@ -1,4 +1,7 @@
-import { IGeoAddress, IGeoLocation } from '@/modules/geo/types';
+import { IMarketOffer } from '@/main';
+import { IFinancePaymentMethod } from '@/modules/finance/paymentMethods/types';
+import { IGeoAddress } from '@/modules/geo/types';
+import { IPaginationParams } from '@/types/pagination';
 
 export interface IMarketStore {
   id: string;
@@ -6,13 +9,22 @@ export interface IMarketStore {
   image: string;
   name: string;
   description: string;
-  address: IGeoAddress;
 }
 
-export interface IMarketStoreExtended extends IMarketStore {
-  metadata: IMarketStoreMetadata;
+export interface IMarketStoreExtended extends IMarketStore, IGeoAddress {
+  offers: IMarketOffer[];
+  payment_methods: IMarketPaymentMethod[];
+}
+export interface IMarketPaymentMethod {
+  id: string;
+  is_active: boolean;
+  config: IMarketPaymentMethodConfig;
+  method: IFinancePaymentMethod;
 }
 
-export interface IMarketStoreMetadata {
-  scope: IGeoLocation;
+interface IMarketPaymentMethodConfig {}
+
+export interface IMarketStoreFilterRequest extends IPaginationParams {
+  location_id: string;
+  name?: string;
 }

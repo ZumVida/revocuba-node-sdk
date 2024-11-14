@@ -27,10 +27,10 @@ export interface IPaginatedData<T> {
 /**
  * @interface IPaginationParams
  */
-export interface IPaginationParams {
+export interface IPaginationParams<Sort = string> {
   pagination?: {
     limit: number;
-    sort_by: string;
+    sort_by: Sort;
     sort_direction: 'asc' | 'desc';
   };
 }
