@@ -1,3 +1,4 @@
+import { IMarketStore } from '@/main';
 import { IPaginationParams } from '@/types/pagination';
 
 export interface IMarketOffer {
@@ -31,7 +32,8 @@ export interface IMarketOfferAttribute {
 
 export interface IMarketOfferExtended extends IMarketOffer {
   metadata: IMarketOfferMetadata;
-  attributes: IMarketOfferAttribute[];
+  // attributes: IMarketOfferAttribute[];
+  store: IMarketStore;
 }
 
 /**

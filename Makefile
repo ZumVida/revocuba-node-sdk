@@ -24,4 +24,4 @@ publish: build
 	@pnpm publish --no-git-checks
 
 .PHONY: fresh-publish
-fresh-publish: unpublish publish
+fresh-publish: build unpublish publish
