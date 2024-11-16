@@ -1,40 +1,94 @@
-import { IGeoAddress } from '../../geo/types';
-import { IUser } from '../../users/types';
-import { IMarketOffer } from '../offers/types';
+import { IGeoLocation, IMarketOffer, IUser } from '@/main';
+import { IPaginationParams } from '@/types/pagination';
 
 export interface IMarketOrder {
   id: string;
-  price_offers: number;
-  price_taxes: number;
-  price_delivery: number;
+  status: MarketOrderStatus;
+  payment_status: MarketOrderPaymentStatus;
+  delivery_status: MarketDeliveryStatus;
+  offers_price: number;
+  delivery_price: number;
+  tax_price: number;
+  total_price: number;
+  created_at: string | null;
+  updated_at: string | null;
+}
+
+export interface IMarketOrderExtended extends IMarketOrder {
+  payments: IMarketOrderPayment[];
   delivery: IMarketDelivery;
+  customer: IUser;
 }
 
 export interface IMarketDelivery {
   recipient_name: string;
   recipient_contact: string;
+  location?: IGeoLocation | null;
+  address: string;
+  latitude: number;
+  longitude: number;
   status: MarketDeliveryStatus;
-  address: IGeoAddress;
-  comments: IMarketDeliveryComment[] | null;
-}
-
-export interface IMarketDeliveryComment {
-  from: IUser;
-  message: string;
-}
-
-export enum MarketDeliveryStatus {
-  PREPARING = 0,
-  READY_FOR_DELIVERY = 1,
-  DELIVERING = 2,
-  COMPLETED = 3,
-  CONFIRMED = 4,
-  CANCELED = 5,
 }
 
 export interface IMarketOrderOffer {
-  quantity: number;
   offer: IMarketOffer;
-  price_sell: number;
-  price_discount: number;
+  quantity: number;
+  offer_sell_price: number;
+  offer_discount_price: number;
 }
+
+export interface IMarketOrderPayment {
+  id: string;
+  amount: number;
+  is_paid: boolean;
+  is_partial: boolean;
+}
+
+export enum MarketDeliveryStatus {
+  PROCESSING = 'processing',
+  ON_WAY = 'on_way',
+  DELIVERED = 'delivered',
+  CONFIRMED = 'confirmed',
+  CANCELLED = 'cancelled',
+}
+export enum MarketOrderStatus {
+  PENDING = 'pending',
+  PROCESSING = 'processing',
+  COMPLETED = 'completed',
+  CANCELLED = 'cancelled',
+}
+
+export enum MarketOrderPaymentStatus {
+  PENDING = 'pending',
+  PROCESSING = 'processing',
+  COMPLETED = 'completed',
+  CANCELLED = 'cancelled',
+  PARTIALLY = 'partially',
+}
+
+/**
+ * ------------------------------------------
+ *	Requests
+ * ------------------------------------------
+ */
+
+export interface IMarketOrderCreateRequest {
+  offers: IMarketOrderItemRequest[];
+  delivery: IMarketOrderDeliveryRequest;
+}
+
+export interface IMarketOrderItemRequest {
+  id: string;
+  quantity: number;
+}
+
+export interface IMarketOrderDeliveryRequest {
+  name: string;
+  contact: string;
+  address: string;
+  location_id: string;
+  latitude: number;
+  longitude: number;
+}
+
+export interface IMarketOrderFilterRequest extends IPaginationParams {}
