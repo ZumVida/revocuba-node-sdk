@@ -35,6 +35,8 @@ export * from './utils/interceptors';
 
 export * from './types/tokenHandler';
 
+// App
+export * from './modules/app/types';
 // Geo
 export * from './modules/geo/types';
 // Market
