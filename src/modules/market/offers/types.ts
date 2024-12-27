@@ -46,5 +46,5 @@ export interface IMarketOfferFilterRequest extends IPaginationParams {
   store_id?: string;
   category_id?: string;
   name?: string;
-  location_id: string;
+  location_id?: string;
 }

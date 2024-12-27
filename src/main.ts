@@ -1,31 +1,13 @@
-import { AxiosInstance } from 'axios';
-import GeoService from './modules/geo/service';
-import CategoryService from './modules/market/categories/service';
-import OfferService from './modules/market/offers/customer.service';
-import OrderService from './modules/market/orders/customer.service';
-import StoreService from './modules/market/stores/customer.service';
-import AuthService from './modules/users/auth/service';
-
-export function setup(api: AxiosInstance) {
-  return {
-    api,
-    auth: AuthService(api),
-    category: CategoryService(api),
-    geo: GeoService(api),
-    offer: OfferService(api),
-    order: OrderService(api),
-    store: StoreService(api),
-  };
-}
-
 /**
  * ------------------------------------------
  * Utils
  * ------------------------------------------
  */
 
+export * from './utils/db';
 export * from './utils/initApi';
 export * from './utils/interceptors';
+export * from './service';
 
 /**
  * ------------------------------------------
@@ -34,6 +16,7 @@ export * from './utils/interceptors';
  */
 
 export * from './types/tokenHandler';
+export * from './types/pagination';
 
 // App
 export * from './modules/app/types';

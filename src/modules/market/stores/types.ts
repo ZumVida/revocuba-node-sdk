@@ -25,6 +25,6 @@ export interface IMarketPaymentMethod {
 interface IMarketPaymentMethodConfig {}
 
 export interface IMarketStoreFilterRequest extends IPaginationParams {
-  location_id: string;
+  location_id?: string;
   name?: string;
 }
