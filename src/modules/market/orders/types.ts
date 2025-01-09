@@ -10,6 +10,8 @@ export interface IMarketOrder {
   delivery_price: number;
   tax_price: number;
   total_price: number;
+  order_offers: IMarketOrderOffer[];
+  customer: IUser;
   created_at: string | null;
   updated_at: string | null;
 }
@@ -17,7 +19,6 @@ export interface IMarketOrder {
 export interface IMarketOrderExtended extends IMarketOrder {
   payments: IMarketOrderPayment[];
   delivery: IMarketDelivery;
-  customer: IUser;
 }
 
 export interface IMarketDelivery {
